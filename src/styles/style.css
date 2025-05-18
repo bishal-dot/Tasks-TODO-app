@@ -1,0 +1,406 @@
+:root{
+    --site-background:#F8F9FA;
+    --text-color-gray:#212529;
+    --primary:#007BFF;
+    --secondary: #6C757D;
+    --border:#DEE2E6;
+    --input:white;
+    --cancel: #FA5252;
+}
+.dark-mode{
+    --site-background:#122537;
+    --text-color-gray:white;
+    --primary:#339AF0;
+    --secondary: #ADB5BD;
+    --border:#343A40;
+    --input:#122537;
+    --cancel: #DC3545;
+}
+body {
+    background-color: var(--site-background);
+}
+body.dark-mode img{
+    filter: invert(1);
+}
+.EmptyTask.dark-mode img{
+    filter: invert(0) !important;
+}
+.hide {
+    display: none !important;
+}
+.show {
+    display: flex !important;
+}
+div.overlay { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #0000003b;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: blur(1px);
+}
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-family: "Quicksand", sans-serif;
+    color: var(--site-black);
+    font-size: 15pt;
+}
+.todoApp{
+    width: 600px;
+    height: 80vh;
+    margin: 10px auto;
+    background-color: var(--site-background);
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    position: relative;
+    gap: 30px;
+    box-shadow: 0 0 5px 5px gray;
+}
+.heading{
+    display: flex;
+    justify-content: space-between;
+}
+.heading h1{
+    font-size: 20pt;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--primary);
+}
+.heading .actions{
+    display: flex;
+    gap: 8px;
+    
+}
+.heading .actions img{
+    border-radius: 50%;
+    padding: 5px;
+}
+.heading .actions img:hover{
+    cursor: pointer;
+    background-color: var(--primary);
+}
+.SearchTask{
+    background-color: var(--input);
+    padding: 10px 20px;
+    display: flex;
+    border-radius: 10px;
+    /* gap: 10px; */
+    justify-content: space-between;
+}
+.SearchTask img{
+    cursor: pointer;
+}
+.SearchTask input{
+    width: 420px;
+    border: none;
+    font-size: 12pt;
+    color: var(--text-color-gray);
+    background-color: var(--input);
+}
+.SearchTask input:focus, .SearchTask button:focus{
+    outline: none;
+}
+.SearchTask button{
+    border: none;
+    background-color: transparent;
+    font-size: 13pt;
+    color: var(--text-color-gray);
+    padding: 4px 8px;
+}
+.SearchTask button:hover{
+    cursor: pointer;
+    background-color: var(--primary);
+    border-radius: 5px;
+    color: var(--site-background);
+}
+
+.taskLists{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.taskLists span p{
+    font-size: 14pt;
+    text-transform: capitalize;
+    font-weight: 200;
+    color: var(--text-color-gray);
+}
+.taskLists .line{
+    background-color: var(--secondary);
+    height: 1px;
+    width: 100%;
+}
+.taskLists ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* overflow-y: scroll; */
+}
+.taskLists ul li{
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid var(--secondary);
+    padding-bottom: 10px;
+}
+.taskLists ul li .radio{
+    background-color: var(--input);
+    border-radius: 20%;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--secondary);
+    cursor: pointer;
+}
+.taskLists ul li .content p{
+    font-size: 13pt;
+    color: var(--text-color-gray);
+}
+.taskLists .actions{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+.taskLists .actions img{
+    padding: 4px;
+}
+.taskLists .actions img:hover{
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+
+
+/* completed */
+.taskLists ul li.completed .radio{
+    background-color: var(--secondary) !important;
+}
+.taskLists ul li.completed .content p{
+    text-decoration: line-through !important;
+    color: var(--secondary) !important;
+
+}
+
+.EmptyTask{
+    width: 400px;
+    height: 50vh;
+    /* overflow: hidden; */
+    position: absolute;
+    top: 37%;
+    left: 20%;
+}
+
+.AddNewModal{
+    background-color: var(--input);
+    padding: 20px;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 660px;
+    border-radius: 10px;
+    z-index: 2;
+}
+.AddNewModal span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.AddNewModal span p{
+    font-size: 16pt;
+    color:var(--primary);
+}
+.AddNewModal span img{
+    padding:5px;
+}
+.AddNewModal span img:hover{
+    cursor: pointer;
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+.AddNewModal input{
+    font-size: 13pt;
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: var(--text-color-gray);
+    background-color: var(--input);
+}
+.AddNewModal input:focus{
+    outline: none;
+}
+.AddNewModal .action{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.AddNewModal .action button{
+    padding: 10px;
+    font-size: 12pt;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color-gray);
+    cursor: pointer;
+}
+.AddNewModal .action button:nth-child(1){
+    background-color: var(--cancel);
+}
+.AddNewModal .action button:nth-child(2){
+    background-color: var(--primary);
+}
+
+.deleteBox{
+    position: absolute;
+    width: 660px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    left: 0;
+    top: 35%;
+    z-index: 2;
+}
+.deleteBox span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.deleteBox span h6{
+    font-size: 16pt;
+    color: var(--primary);
+    font-weight: 200;
+}
+.deleteBox span img{
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+}
+.deleteBox span img:hover{
+    background-color: var(--primary);
+}
+.deleteBox p{
+    font-size: 13pt;
+    color:  var(--text-color-gray);
+}
+.deleteBox .action{
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    gap: 10px;
+}
+.deleteBox .action button{
+    padding: 10px 10px;
+    font-size: 13pt;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color-gray);
+    background-color: var(--primary);
+    cursor: pointer;
+}
+.deleteBox .action button:nth-child(2){
+    background-color: var(--cancel)
+}
+.error{
+    font-size: 11pt;
+    color: var(--cancel);
+    margin-top: -15px;
+}
+/* edit box */
+.editBox{
+    width: 660px;
+    z-index: 2;
+    background-color: var(--input);
+    padding: 20px;
+    position: absolute;
+    left:0;
+    top: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+.editBox span{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.editBox span h6{
+    font-weight: 200;
+    color: var(--primary);
+    font-size: 16pt;
+}
+.editBox span img{
+    padding: 5px;
+    border-radius: 50%;
+}
+.editBox span img:hover{
+    cursor: pointer;
+    background-color: var(--primary);
+}
+.editBox input{
+    font-size: 13pt;
+    border: 1px solid var(--secondary);
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: var(--text-color-gray);
+    background-color: var(--input);
+}
+.editBox input:focus{
+    outline: none;
+}
+.editBox .action{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.editBox .action button{
+    padding: 10px;
+    font-size: 12pt;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-color-gray);
+    cursor: pointer;
+}
+.editBox .action button:nth-child(1){
+    background-color: var(--cancel);
+}
+.editBox .action button:nth-child(2){
+    background-color: var(--primary);
+}
+   
+/*  responsive */
+html {overflow-x: hidden !important;}
+/************************************************************************************
+smaller than 480
+*************************************************************************************/
+
+@media screen and (max-width: 480px) {
+    .todoApp{
+        height: 100vh !important;
+        width: 320px;
+        margin: 0;
+    }
+    .EmptyTask{
+        width: 300px;
+    }
+    .AddNewModal, .editBox, .deleteBox{
+        width: 90%;
+    }
+
+}
