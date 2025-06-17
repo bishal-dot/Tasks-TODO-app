@@ -1,9 +1,19 @@
 <script setup>
 import { useTodoStore } from '@/stores/Task';
 
+import { ref } from 'vue';
+
+const isDarkMode = ref(false);
 
 const theme = () => {
+    isDarkMode.value = !isDarkMode.value;
     document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode.value);
+};
+
+if(localStorage.getItem('darkMode') === 'true'){
+    isDarkMode.value = true;
+    document.body.classList.add('dark-mode');
 }
 
 const TaskStore = useTodoStore();
