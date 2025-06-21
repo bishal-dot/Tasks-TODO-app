@@ -49,6 +49,11 @@ div.overlay {
     color: var(--site-black);
     font-size: 15pt;
 }
+.wrapper{
+    width: 600px;
+    height: 80vh;
+    margin: 10px auto;
+}
 .todoApp{
     width: 600px;
     height: 80vh;
